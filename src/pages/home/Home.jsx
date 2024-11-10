@@ -130,10 +130,10 @@ function Home() {
         <section className="py-24">
           <div className="container">
             <div className="flex flex-wrap lg:flex-nowrap">
-              <div className="flex flex-wrap lg:max-w-sm mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 container lg:max-w-sm mx-auto ">
                 <div
                   data-aos="fade-down"
-                  className="hover-up-5 w-1/2 md:w-1/3 lg:w-full mb-4 wow animate__animated animate__fadeIn"
+                  className="shadow-sm hover-up-5 mb-4 wow animate__animated animate__fadeIn"
                   data-wow-delay=".3s"
                 >
                   <div className="pt-10 pb-8 px-6 bg-white text-center rounded shadow border border-gray-100">
@@ -163,7 +163,7 @@ function Home() {
                 </div>
                 <div
                   data-aos="fade-up"
-                  className="hover-up-5 w-1/2 md:w-1/3 lg:w-full wow animate__animated animate__fadeIn"
+                  className="shadow-sm hover-up-5 wow animate__animated animate__fadeIn"
                   data-wow-delay=".5s"
                 >
                   <div className="pt-10 pb-8 px-6 bg-white text-center rounded shadow border border-gray-100">
