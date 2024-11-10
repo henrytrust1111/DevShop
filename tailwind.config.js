@@ -26,7 +26,8 @@ export default {
       },
       backgroundImage: {
         'bg1': "url('../src/assets/imgs/placeholders/img-15.jpg')",
-      }
+      },
+      
     },
   },
   plugins: [],

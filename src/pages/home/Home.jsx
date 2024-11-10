@@ -33,10 +33,6 @@ function Home() {
       <Layout>
         <section
           className="pb-8 bg-top bg-cover bg-no-repeat relative -mt-24 pt-24 bg-bg1"
-        //   style={{
-        //     backgroundImage:
-        //       "url('../src/assets/imgs/placeholders/img-15.jpg')",
-        //   }}
         >
           <div className="container">
             <div className="py-12 text-center">
@@ -84,7 +80,7 @@ function Home() {
               >
                 <img
                   className="mx-auto"
-                  src="../src/assets/imgs/logos/brands/brand-1.png"
+                  src="/brand-1.png"
                   alt="DevShop"
                 />
               </div>
@@ -94,7 +90,7 @@ function Home() {
               >
                 <img
                   className="mx-auto"
-                  src="../src/assets/imgs/logos/brands/brand-2.png"
+                  src="/brand-2.png"
                   alt="DevShop"
                 />
               </div>
@@ -104,7 +100,7 @@ function Home() {
               >
                 <img
                   className="mx-auto"
-                  src="../src/assets/imgs/logos/brands/brand-3.png"
+                  src="/brand-3.png"
                   alt="DevShop"
                 />
               </div>
@@ -114,7 +110,7 @@ function Home() {
               >
                 <img
                   className="mx-auto"
-                  src="../src/assets/imgs/logos/brands/brand-4.png"
+                  src="/brand-4.png"
                   alt="DevShop"
                 />
               </div>
@@ -124,7 +120,7 @@ function Home() {
               >
                 <img
                   className="mx-auto"
-                  src="../src/assets/imgs/logos/brands/brand-5.png"
+                  src="/brand-5.png"
                   alt="DevShop"
                 />
               </div>
