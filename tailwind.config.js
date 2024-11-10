@@ -24,9 +24,9 @@ export default {
         "--clr-jet": "#302924",
         "--clr-peach": "#ffc397",
       },
-      // backgroundImage: {
-      //   'bg1': "url('/images/bgImage.jpg')",
-      // }
+      backgroundImage: {
+        'bg1': "url('../src/assets/imgs/placeholders/img-15.jpg')",
+      }
     },
   },
   plugins: [],

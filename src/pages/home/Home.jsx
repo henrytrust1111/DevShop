@@ -32,11 +32,11 @@ function Home() {
     <>
       <Layout>
         <section
-          className="pb-8 bg-top bg-cover bg-no-repeat relative -mt-24 pt-24"
-          style={{
-            backgroundImage:
-              "url('../src/assets/imgs/placeholders/img-15.jpg')",
-          }}
+          className="pb-8 bg-top bg-cover bg-no-repeat relative -mt-24 pt-24 bg-bg1"
+        //   style={{
+        //     backgroundImage:
+        //       "url('../src/assets/imgs/placeholders/img-15.jpg')",
+        //   }}
         >
           <div className="container">
             <div className="py-12 text-center">
