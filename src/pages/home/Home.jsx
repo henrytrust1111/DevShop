@@ -347,7 +347,7 @@ function Home() {
                   </div>
                   <img
                     className="h-36 mx-auto my-4"
-                    src="../src/assets/imgs/illustrations/eating.svg"
+                    src="/imgs/illustrations/eating.svg"
                     alt="DevShop"
                   />
                   <h3 className="mb-2 font-bold font-heading text-xl">
@@ -370,7 +370,7 @@ function Home() {
                   </div>
                   <img
                     className="h-36 mx-auto my-4"
-                    src="../src/assets/imgs/illustrations/space.svg"
+                    src="/imgs/illustrations/space.svg"
                     alt="DevShop"
                   />
                   <h3 className="mb-2 font-bold font-heading text-xl">
@@ -395,7 +395,7 @@ function Home() {
                   </div>
                   <img
                     className="h-36 mx-auto my-4"
-                    src="../src/assets/imgs/illustrations/tasks.svg"
+                    src="/imgs/illustrations/tasks.svg"
                     alt="DevShop"
                   />
                   <h3 className="mb-2 font-bold font-heading text-xl">
@@ -846,7 +846,7 @@ function Home() {
                   <div className="flex items-center h-full">
                     <img
                       className="h-80"
-                      src="../src/assets/imgs/illustrations/online-shopping.png"
+                      src="/imgs/illustrations/online-shopping.png"
                       alt="DevShop"
                     />
                   </div>

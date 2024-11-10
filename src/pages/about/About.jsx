@@ -56,7 +56,7 @@ const About = () => {
                 <div className="flex items-center justify-center">
                   <img
                     className="lg:max-w-lg"
-                    src="../src/assets/imgs/illustrations/team.svg"
+                    src="/imgs/illustrations/team.svg"
                     alt="DevShop"
                   />
                 </div>
@@ -225,7 +225,7 @@ const About = () => {
                   </div>
                   <img
                     className="h-36 mx-auto my-4"
-                    src="../src/assets/imgs/illustrations/eating.svg"
+                    src="/imgs/illustrations/eating.svg"
                     alt="DevShop"
                   />
                   <h3 className="mb-2 font-bold font-heading text-xl">
@@ -247,7 +247,7 @@ const About = () => {
                   </div>
                   <img
                     className="h-36 mx-auto my-4"
-                    src="../src/assets/imgs/illustrations/space.svg"
+                    src="/imgs/illustrations/space.svg"
                     alt="DevShop"
                   />
                   <h3 className="mb-2 font-bold font-heading text-xl">
@@ -269,7 +269,7 @@ const About = () => {
                   </div>
                   <img
                     className="h-36 mx-auto my-4"
-                    src="../src/assets/imgs/illustrations/tasks.svg"
+                    src="/imgs/illustrations/tasks.svg"
                     alt="DevShop"
                   />
                   <h3 className="mb-2 font-bold font-heading text-xl">
@@ -308,7 +308,7 @@ const About = () => {
                 >
                   <img
                     className="mb-6 h-24 w-24 mx-auto rounded-full object-cover object-top"
-                    src="../src/assets/imgs/placeholders/avatar-1.png"
+                    src="/imgs/placeholders/avatar-1.png"
                     alt="DevShop"
                   />
                   <strong className="mt-6 mb-2 text-md">Geraldine Tusoy</strong>
@@ -322,7 +322,7 @@ const About = () => {
                 >
                   <img
                     className="mb-6 h-24 w-24 mx-auto rounded-full object-cover object-top"
-                    src="../src/assets/imgs/placeholders/avatar-2.png"
+                    src="/imgs/placeholders/avatar-2.png"
                     alt="DevShop"
                   />
                   <strong className="mt-6 mb-2 text-md">Clara Kolawole</strong>
@@ -336,7 +336,7 @@ const About = () => {
                 >
                   <img
                     className="mb-6 h-24 w-24 mx-auto rounded-full object-cover object-top"
-                    src="../src/assets/imgs/placeholders/avatar-3.png"
+                    src="/imgs/placeholders/avatar-3.png"
                     alt="DevShop"
                   />
                   <strong className="mt-6 mb-2 text-md">Chris Fulton</strong>
@@ -350,7 +350,7 @@ const About = () => {
                 >
                   <img
                     className="mb-6 h-24 w-24 mx-auto rounded-full object-cover object-top"
-                    src="../src/assets/imgs/placeholders/avatar-4.png"
+                    src="/imgs/placeholders/avatar-4.png"
                     alt="DevShop"
                   />
                   <strong className="mt-6 mb-2 text-md">Dany Connolly</strong>
@@ -364,7 +364,7 @@ const About = () => {
                 >
                   <img
                     className="mb-6 h-24 w-24 mx-auto rounded-full object-cover object-top"
-                    src="../src/assets/imgs/placeholders/avatar-5.png"
+                    src="/imgs/placeholders/avatar-5.png"
                     alt="DevShop"
                   />
                   <strong className="mt-6 mb-2 text-md">Al-amin Bishash</strong>
@@ -378,7 +378,7 @@ const About = () => {
                 >
                   <img
                     className="mb-6 h-24 w-24 mx-auto rounded-full object-cover object-top"
-                    src="../src/assets/imgs/placeholders/avatar-6.png"
+                    src="/imgs/placeholders/avatar-6.png"
                     alt="DevShop"
                   />
                   <strong className="mt-6 mb-2 text-md">Sanuya Santa</strong>
@@ -392,7 +392,7 @@ const About = () => {
                 >
                   <img
                     className="mb-6 h-24 w-24 mx-auto rounded-full object-cover object-top"
-                    src="../src/assets/imgs/placeholders/avatar-7.png"
+                    src="/imgs/placeholders/avatar-7.png"
                     alt="DevShop"
                   />
                   <strong className="mt-6 mb-2 text-md">Steven Job</strong>
@@ -406,7 +406,7 @@ const About = () => {
                 >
                   <img
                     className="mb-6 h-24 w-24 mx-auto rounded-full object-cover object-top"
-                    src="../src/assets/imgs/placeholders/avatar-8.png"
+                    src="/imgs/placeholders/avatar-8.png"
                     alt="DevShop"
                   />
                   <strong className="mt-6 mb-2 text-md">Romario</strong>
