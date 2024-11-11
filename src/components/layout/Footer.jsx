@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <>
-            <section className="py-20">
-                <div className="container px-4 mx-auto wow animate__animated animate__fadeIn" data-wow-delay=".3s">
+            <section className="w-full py-20 overflow-hidden">
+                <div className="container w-full px-4 mx-auto wow animate__animated animate__fadeIn" data-wow-delay=".3s">
                     <div className="flex flex-wrap mb-12 lg:mb-20 -mx-3 text-center lg:text-left">
                         <div className="w-full lg:w-1/5 px-3 mb-6 lg:mb-0">
                             <Link href="/" className="flex items-center font-bold text-2xl gap-3" legacyBehavior>
