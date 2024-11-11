@@ -25,12 +25,12 @@ function Home() {
     }
   };
 
-  // useEffect(() => {
-  //   AOS.init({
-  //     duration: 800, // Animation duration
-  //     once: true, // Animation will happen only once on scroll
-  //   });
-  // }, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 800, // Animation duration
+      once: true, // Animation will happen only once on scroll
+    });
+  }, []);
 
   return (
     <>
@@ -76,7 +76,6 @@ function Home() {
               </div>
             </div>
 
-
             <div className="flex flex-wrap items-center justify-center max-w-4xl mx-auto pt-12 pb-4">
               <div
                 className="w-1/2 md:w-1/3 lg:w-1/5 px-8 mb-8 wow animate__animated animate__fadeIn"
@@ -112,6 +111,25 @@ function Home() {
           </div>
         </section>
         <Why />
+
+        <div className="container grid grid-cols-1 md:grid-cols-2">
+          <div data-aos="fade-right" className="mb-4 lg:mb-0">
+            <h2 className="text-3xl md:text-4xl font-bold font-heading wow animate__animated animate__fadeInDown">
+              <span>We are </span>
+              <span className="text-blue-500">awesome team </span>
+              <br />
+              <span>for your business dream</span>
+            </h2>
+          </div>
+          <div className="">
+            <p data-aos="fade-down" className="text-blueGray-400 text-wrap">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              luctus eget justo et iaculis. Quisque vitae nulla malesuada,
+              auctor arcu vitae, luctus nisi. Sed elementum vitae ligula id
+              imperdiet.
+            </p>
+          </div>
+        </div>
         <HowWeWork />
         <KeyFeatures />
         <Pricing />

@@ -4,9 +4,9 @@ import Login from "../pages/auth/login/Login";
 import Home from "../pages/home/Home";
 import Contact from "../pages/contact/Contact";
 import About from "../pages/about/About";
-import Services from "../pages/services/Services";
 import OtherServices from "../pages/others/others";
 import UserSignup from "../pages/auth/signUp/signUp";
+import Careers from "../pages/services/Careers";
 
 const route = createHashRouter([
   {
@@ -28,7 +28,7 @@ const route = createHashRouter([
   },
   {
     path: "/careers",
-    element: <Services />,
+    element: <Careers />,
   },
   {
     path: "/services",

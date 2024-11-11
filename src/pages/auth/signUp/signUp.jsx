@@ -1,321 +1,177 @@
-import { useNavigate } from "react-router-dom"
-import "./signUp.css"
-import { toast, ToastContainer } from "react-toastify"
-import { useState } from "react"
-import { BeatLoader } from "react-spinners"
-import axios from "axios"
+import React, { useEffect, useState } from "react";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { MdAccountBalance } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { DB } from "../../../Global/Features";
+import Layout from '../../../components/layout/Layout';
 
-const UserSignup = () => {
-    const navigate = useNavigate()
-    const [fullName, setFullName] = useState("")
-    const [userName, setUserName] = useState("")
-    const [phone, setPhone] = useState("")
-    const [email, setEmail] = useState("")
-    const [occupation, setOccupation] = useState("")
-    const [dateOfBirth, setDateOfBirth] = useState("")
-    const [maritalStatus, setMaritalStatus] = useState("")
-    const [address, setAddress] = useState("")
-    const [accountType, setAccountType] = useState("")
-    const [gender, setGender] = useState("")
-    const [password, setPassword] = useState("")
-    const [retypePassword, setRetypePassword] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState({
-        // isError: false,
-        type: "",
-        message: ""
-    })
+const Signup = () => {
+  const [accountNumber, setAccountNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const nav = useNavigate();
+  const dispatch = useDispatch();
 
-    const userData = {
-        fullName: fullName,
-        username: userName,
-        phoneNumber: phone,
-        email: email,
-        occupation: occupation,
-        dateOfBirth: dateOfBirth,
-        maritalStatus: maritalStatus,
-        address: address,
-        accountType: accountType,
-        password: password,
-        // gender: gender,
-        retypePassword: retypePassword
+  useEffect(() => {
+    dispatch(DB(["Hello World"]));
+  }, [dispatch]);
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
     }
-
-    const passwordValidator = () => {
-        const hasUpperCase = /[A-Z]/
-        const hasLowerCase = /[a-z]/
-        const hasNumbers = /\d/
-        const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/
-    
-          return hasUpperCase.test(password) &&
-                 hasLowerCase.test(password) &&
-                 hasNumbers.test(password) &&
-                 hasSpecialChars.test(password)
+    setIsLoading(true);
+    try {
+      const response = await axios.post("https://avantgardefinance-api.onrender.com/signup", {
+        accountNumber,
+        email,
+        password,
+      });
+      const { message } = response.data;
+      toast.success(message);
+      nav("/login");
+    } catch (error) {
+      if (error.response) {
+        const { message } = error.response.data;
+        toast.error(message);
+      } else {
+        toast.error("An error occurred. Please try again later.");
+      }
+    } finally {
+      setIsLoading(false);
     }
+  };
 
-    const handleSignUp = (e) => {
-        e.preventDefault()
-        setLoading(true)
-        if(!fullName){
-            setLoading(false)
-            setError({
-                // isError: true,
-                type: "fullname",
-                message: "Input your fullname"
-            })
-            toast.error(error.type === "fullname" ? error.message : "" )
-        } else if(!userName) {
-            setLoading(false)
-            setError({
-                // isError: true,
-                type: "username",
-                message: "Input your username"
-            })
-            toast.error(error.type === "username" ? error.message : "" )
-        } else if(!phone) {
-            setLoading(false)
-            setError({
-                // isError: true,
-                type: "phone",
-                message: "input your phone number"
-            })
-            toast.error(error.type === "phone" ? error.message : "" )
-        } else if(!email) {
-            setLoading(false)
-            setError({
-                // isError: true,
-                type: "email",
-                message: "input your email"
-            })
-            toast.error(error.type === "email" ? error.message : "" )
-            
-        } else if(!occupation) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "occupation",
-                message: "input your occupation"
-            })
-            toast.error(error.type === "occupation" ? error.message : "" )
-        } else if(!dateOfBirth) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "dob",
-                message: "input your date of birth"
-            })
-            toast.error(error.type === "dob" ? error.message : "" )
-        }else if(!maritalStatus) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "marital",
-                message: "select your marital status"
-            })
-            toast.error(error.type === "marital" ? error.message : "" )
-        } else if(!address) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "address",
-                message: "input your address"
-            })
-            toast.error(error.type === "address" ? error.message : "" )
-        } else if(!accountType) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "account",
-                message: "select the type of account you want to open"
-            })
-            toast.error(error.type === "account" ? error.message : "" )
-        }else if(!password) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "password",
-                message: "input a strong password"
-            })
-            toast.error(error.type === "password" ? error.message : "" )
-        } else if(passwordValidator() === false) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "passwordvalid",
-                message: "password and confirmPassword must match, and it must contain upperCasa, lowercase and special character"
-            })
-            toast.error(error.type === "passwordvalid" ? error.message : "" )
-        } else if(!retypePassword) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "retype",
-                message: "retype your password correctly"
-            })
-            toast.error(error.type === "retype" ? error.message : "" )
-        }else if(password !== retypePassword) {
-            setLoading(false)
-            setError({
-                isError: true,
-                type: "passwordmatch",
-                message: "password and retype password must match"
-            })
-            toast.error(error.type === "passwordmatch" ? error.message : "" )
-        }else{
-            const url = "https://avantgardefinance-api.onrender.com/sign-up"
-            axios.post(url, userData)
-            .then((response)=> {
-                console.log(response.data)
-                localStorage.setItem("userData",JSON.stringify(response?.data.data))
-                setLoading(false)
-                toast.success(response.data.message)
-                setTimeout(()=>{
-                    navigate("/otp")
-                }, 4000)
-            })
-            .catch((error)=> {
-                console.log(error)
-                // console.log("user name", userName)
-                setLoading(false)
-                toast.error(error.response.data.message)
-            })
-        }
-    }
-    return(
-        <div className="signupParent" style={{backgroundImage: 'url("./imgs/bussiness.jpg")', backgroundSize: "cover"}}>
-            <div className="signUpbody">
-                <div className="signUptop">
-                    <p>Welcome to AVANT GARDE FINANCE <span>Get Started!</span></p>
-                    <i>Provide the following information to get started</i>
-                </div>
-                <ToastContainer />
-                <form onSubmit={handleSignUp}>
-                <div className="signupInputHold">
-                    <div className="signUpinput">
-                        <div className="signupInputone">
-                            <p>Full Name</p>
-                            <input
-                            required
-                             value={fullName}
-                             onChange={(e)=>setFullName(e.target.value)}
-                             type="text" />
-                        </div>
-                        <div className="signupInputone">
-                            <p>User Name</p>
-                            <input 
-                            required
-                            value={userName}
-                            onChange={(e)=>setUserName(e.target.value)}
-                            type="text" />
-                        </div>
-                    </div>
-                    <div className="signUpinput">
-                        <div className="signupInputone">
-                            <p>Phone</p>
-                            <input 
-                            required
-                            value={phone}
-                            onChange={(e)=>setPhone(e.target.value)}
-                            type= "number" />
-                        </div>
-                        <div className="signupInputone">
-                            <p>Email</p>
-                            <input 
-                            required
-                            value={email}
-                            onChange={(e)=>setEmail(e.target.value)}
-                            type="email" />
-                        </div>
-                    </div>
-                    <div className="signUpinput">
-                        <div className="signupInputone">
-                            <p>Occupation</p>
-                            <input 
-                            required
-                            value={occupation}
-                            onChange={(e)=>setOccupation(e.target.value)}
-                            type="text" />
-                        </div>
-                        <div className="signupInputone">
-                            <p>Date Of Birth</p>
-                            <input 
-                            required
-                            value={dateOfBirth}
-                            onChange={(e)=>setDateOfBirth(e.target.value)}
-                            type="date" />
-                        </div>
-                    </div>
-                    <div className="signUpinput">
-                        <div className="signupInputone">
-                            <p>Marital Status</p>
-                            <select 
-                            required
-                            value={maritalStatus}
-                            onChange={(e)=>setMaritalStatus(e.target.value)}
-                            name="marital" id="marital">
-                                <option value="">select</option>
-                                <option value="Single">Single</option>
-                                <option value="Married">Maried</option>
-                                <option value="Divorced">Divorced</option>
-                            </select>
-                        </div>
-                        <div className="signupInputone">
-                            <p>Address</p>
-                            <input 
-                            required
-                            value={address}
-                            onChange={(e)=>setAddress(e.target.value)}
-                            type="address" />
-                        </div>
-                    </div>
-                    <div className="signUpinput">
-                        <div className="signupInputone">
-                            <p>Account Type</p>
-                            <select 
-                            required
-                            value={accountType}
-                            onChange={(e)=>setAccountType(e.target.value)}
-                            name="marital" id="marital">
-                                <option value="">select</option>
-                                <option value="savings">Savings account</option>
-                                <option value="current">Current account</option>
-                                {/* <option value="checking">Checking account</option> */}
-                            </select>
-                        </div>
-                        <div className="signupInputone">
-                            <p>Password</p>
-                            <input 
-                            required
-                            value={password}
-                            onChange={(e)=>setPassword(e.target.value)}
-                            type="text" />
-                        </div>
-
-                    </div>
-                    <div className="signUpinput">
-                        
-                        <div className="signupInputone">
-                            <p>Retype-Password</p>
-                            <input 
-                            required
-                            value={retypePassword}
-                            onChange={(e)=>setRetypePassword(e.target.value)}
-                            type="text" />
-                        </div>
-                    </div>
-                    <div className="signUpbottonHold">
-                        <button type="submit" className="signButton1">
-                            {
-                                loading ? <BeatLoader color="white" />: "Sign-Up"
-                            }
-                        </button>
-                        <button className="signButton2" onClick={()=>navigate("/sign-in")}>allready have an account? <span style={{color: "blue"}}>LOGIN</span></button>
-                    </div>
-                </div>
-                </form>
+  return (
+    <>
+      <Layout>
+        <section className="relative pb-20">
+          <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto">
+            <div className="flex items-center h-full wow animate__animated animate__fadeIn animated" data-wow-delay=".1s">
+              <img className="lg:max-w-lg mx-auto" src="/imgs/illustrations/space.svg" alt="Monst" />
             </div>
-        </div>
-    )
-}
+          </div>
+          <div className="container">
+            <div className="relative flex flex-wrap pt-12">
+              <div className="lg:flex lg:flex-col w-full lg:w-1/2 py-6 lg:pr-20">
+                <div className="w-full max-w-lg mx-auto lg:mx-0 my-auto wow animate__animated animate__fadeIn animated" data-wow-delay=".3s">
+                  <span className="text-sm text-blueGray-400">Sign Up</span>
+                  <h4 className="mb-6 text-3xl">Create an Account with Avant Garde Finance</h4>
+                  <form onSubmit={handleSignup}>
+                    <div className="flex mb-4 px-4 bg-blueGray-50 rounded border border-gray-200">
+                      <input
+                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                        type="number"
+                        placeholder="Account Number"
+                        value={accountNumber}
+                        onChange={(e) => setAccountNumber(e.target.value)}
+                        required
+                      />
+                      <MdAccountBalance className="h-6 w-6 ml-4 my-auto text-blueGray-300" />
+                    </div>
+                    <div className="flex mb-4 px-4 bg-blueGray-50 rounded border border-gray-200">
+                      <input
+                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                        type="email"
+                        placeholder="Email Address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                      <FaEnvelope className="h-6 w-6 ml-4 my-auto text-blueGray-300" />
+                    </div>
+                    <div className="flex mb-4 px-4 bg-blueGray-50 rounded border border-gray-200 relative">
+                      <input
+                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                      <button type="button" className="ml-4" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? (
+                          <FaEyeSlash className="h-6 w-6 text-blueGray-300" />
+                        ) : (
+                          <FaEye className="h-6 w-6 text-blueGray-300" />
+                        )}
+                      </button>
+                    </div>
+                    <div className="flex mb-6 px-4 bg-blueGray-50 rounded border border-gray-200 relative">
+                      <input
+                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                      />
+                      <button type="button" className="ml-4" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? (
+                          <FaEyeSlash className="h-6 w-6 text-blueGray-300" />
+                        ) : (
+                          <FaEye className="h-6 w-6 text-blueGray-300" />
+                        )}
+                      </button>
+                    </div>
+                    <div className="float-left mb-6 wow animate__animated animate__fadeIn animated" data-wow-delay=".1s">
+                      <label className="inline-flex text-xs">
+                        <input type="checkbox" className="form-checkbox" required />
+                        <span className="ml-2">
+                          I agree to{" "}
+                          <Link to="/about" legacyBehavior>
+                            <a className="underline hover:text-blueGray-500">Privacy Policy</a>
+                          </Link>{" "}
+                          and{" "}
+                          <Link to="/about" legacyBehavior>
+                            <a className="underline hover:text-blueGray-500">Terms of Use</a>
+                          </Link>
+                        </span>
+                      </label>
+                    </div>
+                    <button
+                      type="submit"
+                      className="transition duration-300 ease-in-out transform hover:-translate-y-1 block w-full p-4 text-center text-xs text-white font-semibold leading-none bg-blue-500 hover:bg-blue-700 rounded"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      ) : (
+                        "Sign Up"
+                      )}
+                    </button>
+                  </form>
+                </div>
+                <div className="w-full mx-auto text-center">
+                  <p>
+                    Already have an account?{" "}
+                    <Link to="/login" legacyBehavior>
+                      <a className="inline-block text-xs text-blue-600 hover:text-blue-700 font-semibold leading-none wow animate__animated animate__fadeIn animated" data-wow-delay=".1s">
+                        Login now
+                      </a>
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Layout>
+      <ToastContainer />
+    </>
+  );
+};
 
-export default UserSignup
+export default Signup;
